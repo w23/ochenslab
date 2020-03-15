@@ -1,11 +1,14 @@
 [package]
 name = "ochenslab"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Ivan Avdeev <me@w23.ru>"]
 edition = "2018"
 license = "WTFPL OR MIT"
 description = "Trivial and fast fixed-size allocator/container"
+documentation = "https://docs.rs/ochenslab/0.0.2/ochenslab/"
+repository = "https://github.com/w23/ochenslab/"
 keywords = ["slab", "allocator", "storage"]
+categories = ["memory-management"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

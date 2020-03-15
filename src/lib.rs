@@ -54,6 +54,11 @@ impl<T> OchenSlab<T> {
         }
     }
 
+    /// Return number of preallocated slots
+    pub fn capacity(&self) -> usize {
+        self.storage.len()
+    }
+
     /// Return number of elements in this container
     pub fn len(&self) -> usize {
         self.storage.len() - self.free.len()
@@ -96,6 +101,7 @@ mod tests {
     #[test]
     fn can_insert_and_remove_an_element() {
         let mut slab = OchenSlab::<usize>::with_capacity(8);
+        assert_eq!(slab.capacity(), 8);
         let index = slab.insert(31337);
         assert!(index.is_some());
         assert_eq!(slab.len(), 1);
@@ -112,6 +118,7 @@ mod tests {
     #[test]
     fn can_reach_capacity() {
         let mut slab = OchenSlab::<usize>::with_capacity(4);
+        assert_eq!(slab.capacity(), 4);
         assert!(slab.insert(1).is_some());
         assert!(slab.insert(2).is_some());
         assert!(slab.insert(3).is_some());
@@ -123,6 +130,7 @@ mod tests {
     #[test]
     fn can_reach_capacity_and_back() {
         let mut slab = OchenSlab::<usize>::with_capacity(4);
+        assert_eq!(slab.capacity(), 4);
         assert!(slab.insert(1).is_some());
         let index = slab.insert(2);
         assert!(index.is_some());
@@ -144,6 +152,7 @@ mod tests {
     #[test]
     fn can_mutate_element() {
         let mut slab = OchenSlab::<usize>::with_capacity(4);
+        assert_eq!(slab.capacity(), 4);
         let index = slab.insert(1).expect("insert() failed");
         let item = slab.get_mut(index).expect("get_mut() failed");
         *item = 2;
